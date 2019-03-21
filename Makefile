@@ -19,9 +19,9 @@ CXX := arm-none-eabi-g++
 
 # ------------------------------------------------------------------
 # Flags for the C compiler
-CFLAGS = -Wall -O3 -g -s $(ARCHFLAGS) $(INCLUDES) \
-	-Wno-unused-function -ffreestanding -fno-common \
-	-ffunction-sections -fdata-sections -fno-builtin 
+CFLAGS = -Wall -O3 $(ARCHFLAGS) $(INCLUDES) \
+	-ffreestanding -fno-common -fomit-frame-pointer \
+	-ffunction-sections -fdata-sections 
 # ------------------------------------------------------------------
 
 # ------------------------------------------------------------------
@@ -30,10 +30,8 @@ ARCHFLAGS = -mcpu=cortex-m4 -mthumb
 # ------------------------------------------------------------------
 
 # ------------------------------------------------------------------
-# Linker flags, need to specify a linker script as well
-# LINKER_SCRIPT = ...
-# LDFLAGS = -T$(LINKER_SCRIPT) -nostartfiles -Wl, --gc-sections
-LDFLAGS = -nostartfiles -Wl,--gc-sections
+# Linker flags
+LDFLAGS = --specs=nosys.specs -Wl,--gc-sections
 # ------------------------------------------------------------------
 
 # ------------------------------------------------------------------
@@ -47,7 +45,7 @@ OBJS = $(SRC:.c=.o)
 # Compile the files into an .elf executable
 app: $(OBJS)
 	arm-none-eabi-gcc $(LDFLAGS) -o app $(OBJS)
-	rm *.o
+	rm -f *.o
 # ------------------------------------------------------------------
 
 # ------------------------------------------------------------------

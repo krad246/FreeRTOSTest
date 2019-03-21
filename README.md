@@ -18,7 +18,7 @@ To try to get a Makefile build of FreeRTOS up and running. See the example files
 - Linker flags and a linker script, i.e.:
 	```
 	LINKER_SCRIPT = xxx.ld
-	LDFLAGS = -T$(LINKER_SCRIPT) -nostartfiles -Wl, --gc-sections
+	LDFLAGS = -T$(LINKER_SCRIPT) --specs=nosys.specs -Wl,--gc-sections
 	```
 - Recipes to build a .elf file, i.e.:
 	```
@@ -28,3 +28,4 @@ To try to get a Makefile build of FreeRTOS up and running. See the example files
 		arm-none-eabi-gcc $(LDFLAGS) -o app $(OBJS)
 		rm *.o
 	```
+- Necessary kernel function implementations such as vApplicationGetIdleTaskMemory(), which can be found on the FreeRTOS site. Really depends on the contents of FreeRTOSConfig.h
