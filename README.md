@@ -1,12 +1,12 @@
 # Purpose
 To try to get a Makefile build of FreeRTOS up and running. See the example files in the repository.
-___
+
 # Steps
 - Download the FreeRTOS zip file
 - Identify the architecture you are building for.
 - Add list.c, heap_x.c, port.c, queue.c, tasks.c, and FreeRTOSConfig.h to the project directory
 - Create a Makefile
-___
+
 # Makefile
 - Include paths to the kernel headers
 - Include paths to the specific port of FreeRTOS
