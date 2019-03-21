@@ -1,4 +1,9 @@
 # ------------------------------------------------------------------
+# Perform a parallel build
+MAKEFLAGS += "-j $(shell nproc)"
+# ------------------------------------------------------------------
+
+# ------------------------------------------------------------------
 # Paths to important kernel headers
 FREERTOS = /mnt/c/FreeRTOSv10.2.0/FreeRTOS/Source/include
 ARMCM3 = /mnt/c/FreeRTOSv10.2.0/FreeRTOS/Source/portable/GCC/ARM_CM3
@@ -20,8 +25,8 @@ CXX := arm-none-eabi-g++
 # ------------------------------------------------------------------
 # Flags for the C compiler
 CFLAGS = -Wall -O3 $(ARCHFLAGS) $(INCLUDES) \
-	-ffreestanding -fno-common -fomit-frame-pointer \
-	-ffunction-sections -fdata-sections 
+	-fno-common -fomit-frame-pointer \
+	-ffunction-sections -fdata-sections
 # ------------------------------------------------------------------
 
 # ------------------------------------------------------------------
